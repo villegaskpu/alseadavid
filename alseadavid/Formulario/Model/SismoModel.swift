@@ -43,11 +43,13 @@ class Properties: Codable {
     let mag: Double
     let url, detail: String
     let title: String
+    let time: Int
 
-    init(mag: Double, url: String, detail: String, title: String) {
+    init(mag: Double, url: String, detail: String, title: String, time: Int) {
         self.mag = mag
         self.url = url
         self.detail = detail
         self.title = title
+        self.time = time
     }
 }

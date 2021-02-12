@@ -36,7 +36,7 @@ extension DetalleVC :UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         let obj = viewModel?.sismos?.features[indexPath.row]
         cell.textLabel?.text = obj?.properties.title ?? ""
-        cell.detailTextLabel?.text = "Magnitud: \(obj?.properties.mag ?? 0.0)"
+        cell.detailTextLabel?.text = "Magnitud: \(obj?.properties.mag ?? 0.0)  Hora: \(getDate(date: Double(obj?.properties.time ?? 0)))"
         cell.backgroundColor = setColorBakgroundCell(magnitud: obj?.properties.mag ?? 0.0)
         return cell
     }
@@ -53,6 +53,16 @@ extension DetalleVC :UITableViewDelegate, UITableViewDataSource {
         default:
             return UIColor.red
         }
+    }
+    
+    private func getDate(date:Double) -> String {
+        let date = NSDate(timeIntervalSince1970: date)
+
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "dd MMM YY, hh:mm a"
+
+        let dateString = dayTimePeriodFormatter.string(from: date as Date)
+        return dateString
     }
     
     
